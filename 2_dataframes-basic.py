@@ -203,5 +203,5 @@ print(nba.info())
 # Change type to cateogry to save memory usage
 nba['Position'].nuunique()
 # 5
-nba['Position'] = nba['Position'].astype('int')
+nba['Position'] = nba['Position'].astype('category')
 # Saved me some memory usage
