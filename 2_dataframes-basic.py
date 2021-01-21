@@ -1,6 +1,7 @@
 import pandas as pd
 
 # Dataframes are vector tables
+# It is always important to remember that changes to dataframes will not be saved if the parameter inplace=True is not used.  The other option is storing the dataframe into a new variable each time.
 
 # Calibrating view in console
 pd.set_option('display.max_rows', 10)
@@ -154,7 +155,6 @@ nba.dropna(axis=1)
 # Drops row with NaN in only specified column
 nba.dropna(subset=['Salary'])
 
-
 # Fill null values -- Keep value types consistent
 nba = pd.read_csv("data/nba.csv")
 # Will set all null values in dataframe to 0. Something you'll probably never use.
@@ -201,7 +201,37 @@ print(nba.info())
 # memory usage: 30.5+ KB
 
 # Change type to cateogry to save memory usage
-nba['Position'].nuunique()
+nba['Position'].nunique()
 # 5
 nba['Position'] = nba['Position'].astype('category')
 # Saved me some memory usage
+
+
+# SORT VALUES
+nba.sort_values('Name', ascending=False)
+nba.sort_values('Salary', inplace=True)
+# Place NaN values at top
+nba.sort_values('Salary', na_position='first')
+
+# Sort by Multiple Values
+# Both columns will be in reverse
+nba.sort_values(['Team', 'Name'], ascending=False)
+
+# Sort team last->first and names first->last
+nba.sort_values(['Team', 'Name'], ascending=[False, True])
+
+# Order by index
+nba.sort_index(ascending=True)
+
+# Re-sort index when out of order
+nba.reset_index(drop=True, inplace=True)
+
+# Rank attributes in a series
+nba['Salary Rank'] = nba['Salary'].rank(ascending=False).astype('int')
+# Salaries will now be ranked as 1 being the highest salary and ~452 being the lowest
+
+nba.sort_values('Salary', ascending=False, inplace=True)
+#                Name                 Team  Number Position   Age Height  Weight       College    Salary  Salary Rank
+# 457      Kobe Bryant   Los Angeles Lakers    24.0       SF  37.0    6-6   212.0    No College  25000000            1
+# 456     LeBron James  Cleveland Cavaliers    23.0       SF  31.0    6-8   250.0    No College  22970500            2
+# 455  Carmelo Anthony      New York Knicks     7.0       SF  32.0    6-8   240.0      Syracuse  22875000            3
