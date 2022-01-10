@@ -449,7 +449,10 @@ nba[['Team', 'Name']].head(3)
 select = ['Salary', 'Team', 'Name']
 nba[select].head(3)
 
-# Add new column
+# Add new column - line 453 and 454 were added in at a later time and do not appear in output
+nba['End_Column'] = ""
+nba.insert(3, column='Inserted', value="")
+
 nba['League'] = 'National Basketball Association'
 #               Name            Team  Number Position   Age Height  Weight            College     Salary                           League
 # 0    Avery Bradley  Boston Celtics     0.0       PG  25.0    6-2   180.0              Texas  7730337.0  National Basketball Association
