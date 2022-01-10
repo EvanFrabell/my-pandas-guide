@@ -223,9 +223,44 @@ conditions = [
     (bond['Director'] == 'Ken Hughes'),
     (bond['Actor'] == 'Roger Moore')]
 
+# Could store a function or lamda as well
 calc = round((bond['Salary'] / bond['Budget']) * 100, 2)
 choices = ['None for Ken', 'None for Roger']
-bond['color'] = np.select(conditions, choicelist=choices, default=calc)
+bond['Percentage of '] = np.select(conditions, choicelist=choices, default=calc)
 
 
 print(bond)
+
+# IMPORTANT OUTPUT
+#                                  Year           Actor            Director  Box Office  Budget  Salary           color
+# Film
+# A View to a Kill                 1985     Roger Moore           John Glen       275.2    54.5     9.1  None for Roger
+# Casino Royale                    2006    Daniel Craig     Martin Campbell       581.5   145.3     3.3            2.27
+# Casino Royale                    1967     David Niven          Ken Hughes       315.0    85.0     0.0    None for Ken
+# Diamonds Are Forever             1971    Sean Connery        Guy Hamilton       442.5    34.7     5.8           16.71
+# Die Another Day                  2002  Pierce Brosnan        Lee Tamahori       465.4   154.2    17.9           11.61
+# Dr. No                           1962    Sean Connery       Terence Young       448.8     7.0     0.6            8.57
+# For Your Eyes Only               1981     Roger Moore           John Glen       449.4    60.2     0.0  None for Roger
+# From Russia with Love            1963    Sean Connery       Terence Young       543.8    12.6     1.6            12.7
+# GoldenEye                        1995  Pierce Brosnan     Martin Campbell       518.5    76.9     5.1            6.63
+# Goldfinger                       1964    Sean Connery        Guy Hamilton       820.4    18.6     3.2            17.2
+# Licence to Kill                  1989  Timothy Dalton           John Glen       250.9    56.7     7.9           13.93
+# Live and Let Die                 1973     Roger Moore        Guy Hamilton       460.3    30.8     0.0  None for Roger
+# Moonraker                        1979     Roger Moore       Lewis Gilbert       535.0    91.5     0.0  None for Roger
+# Never Say Never Again            1983    Sean Connery      Irvin Kershner       380.0    86.0     0.0             0.0
+# Octopussy                        1983     Roger Moore           John Glen       373.8    53.9     7.8  None for Roger
+# On Her Majesty's Secret Service  1969  George Lazenby       Peter R. Hunt       291.5    37.3     0.6            1.61
+# Quantum of Solace                2008    Daniel Craig        Marc Forster       514.2   181.4     8.1            4.47
+# Skyfall                          2012    Daniel Craig          Sam Mendes       943.5   170.2    14.5            8.52
+# Spectre                          2015    Daniel Craig          Sam Mendes       726.7   206.3     0.0             0.0
+# The Living Daylights             1987  Timothy Dalton           John Glen       313.5    68.8     5.2            7.56
+# The Man with the Golden Gun      1974     Roger Moore        Guy Hamilton       334.0    27.7     0.0  None for Roger
+# The Spy Who Loved Me             1977     Roger Moore       Lewis Gilbert       533.0    45.1     0.0  None for Roger
+# The World Is Not Enough          1999  Pierce Brosnan       Michael Apted       439.5   158.3    13.5            8.53
+# Thunderball                      1965    Sean Connery       Terence Young       848.1    41.9     4.7           11.22
+# Tomorrow Never Dies              1997  Pierce Brosnan  Roger Spottiswoode       463.2   133.9    10.0            7.47
+# You Only Live Twice              1967    Sean Connery       Lewis Gilbert       514.2    59.9     4.4            7.35
+
+
+
+
