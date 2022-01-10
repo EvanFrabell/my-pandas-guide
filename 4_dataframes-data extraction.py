@@ -190,6 +190,16 @@ bond.drop(['Release Date', 'Actor'], axis='columns')
 # Remove entire column and store in a series for later use
 actor = bond.pop("Actor")
 
+# retrieve random single row
+bond.sample()
+# retrieve 5 random rows
+bond.sample(n=5)
+# retrieve percentage of rows randomly
+bond.sample(frac=.25)
+# retrieve random column
+bond.sample(axis=1)
+
+
 
 # Advanced Conditional Statements
 
