@@ -1047,6 +1047,8 @@ bond.rename(columns={'Bond Actor Salary': 'Salary'}, inplace=True)
 # Dr. No                           1962    Sean Connery       Terence Young       448.8     7.0                0.6
 # For Your Eyes Only               1981     Roger Moore           John Glen       449.4    60.2                NaN
 
+
+########################## ADVANCED CONCEPTS ####################
 # Advanced Conditions
 bond['Salary'].fillna(0, inplace=True)
 
@@ -1087,3 +1089,43 @@ bond['color'] = np.select(conditions, choicelist=choices, default=calc)
 # Thunderball                      1965    Sean Connery       Terence Young       848.1    41.9     4.7           11.22
 # Tomorrow Never Dies              1997  Pierce Brosnan  Roger Spottiswoode       463.2   133.9    10.0            7.47
 # You Only Live Twice              1967    Sean Connery       Lewis Gilbert       514.2    59.9     4.4            7.35
+
+
+# Update rows from another dataframe or from separate columns
+# Overwrite and disregard Null values
+# Differing patterns
+my_table = {'key': ['1a', '2a', '3a', '4a'],
+       'column2': ['b', 'b', 'b', 'b'],
+       'column3': ['c', 'c', 'c', 'c'],
+       'column4': ['d', 'd', 'd', 'd']}
+
+my_table2 = {'key': ['2a', '4a'],
+       'col2': ['z', 'z'],
+       'col3': ['x', 'x'],
+       'col4': ['y', 'y']}
+
+df = pd.DataFrame(my_table)
+
+df2 = pd.DataFrame(my_table2)
+
+df3 = pd.merge(df, df2, on='key', how='left')
+
+df3['column2'].update(df3['col2'])
+df3['column4'].update(df3['col4'])
+
+#   key column2 column3 column4
+# 0  1a       b       c       d
+# 1  2a       b       c       d
+# 2  3a       b       c       d
+# 3  4a       b       c       d
+#   key col2 col3 col4
+# 0  2a    z    x    y
+# 1  4a    z    x    y
+#   key column2 column3 column4 col2 col3 col4
+# 0  1a       b       c       d  NaN  NaN  NaN
+# 1  2a       z       c       y    z    x    y
+# 2  3a       b       c       d  NaN  NaN  NaN
+# 3  4a       z       c       y    z    x    y
+#
+# Process finished with exit code 0
+
