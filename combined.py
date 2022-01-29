@@ -1129,3 +1129,14 @@ df3['column4'].update(df3['col4'])
 #
 # Process finished with exit code 0
 
+
+# Select rows based on multiple conditions
+df = df.loc[(df['col1'] == 'value') & (df['col2'] < 'value')]
+# Conditional with where and not null notnull not na notna notnan not nan
+df2['Owner'] = np.where(df2['OwnerName1'].notna(), df2['OwnerName1'], df2['OwnerName2'])
+#          PropertyNumber    StreetName     ZipCode                                      OwnerName1    OwnerName2  PropertyClass  MonthofSale  DayofSale  YearofSale  SalePrice                                           Owner
+# 7      571-0003-0137-00        SECOND  45001-0000                                     TAYLOR MARK           NaN            510            9         21        2021      55000                                     TAYLOR MARK
+# 9      571-0003-0141-00        SECOND  45001-0000                             JACKSON CHRISTINE M           NaN            510            2         16        2021     119000                             JACKSON CHRISTINE M
+# 10     571-0003-0236-00        SECOND  45001-0000                                             NaN  KAMPHAUS DAN            510            7         26        2021      50000                                    KAMPHAUS DAN
+# 11     571-0003-0107-00         FIRST  45001-0000                               KEYTRI REALTY LLC           NaN            510            6         25        2021      42000                               KEYTRI REALTY LLC
+
